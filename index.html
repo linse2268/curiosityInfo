@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>ESS Curiosity</title>
+    <link
+      rel="icon"
+      href="https://squidpod.github.io/images/pics/final_light.png"
+    />
+    <style>
+      :root {
+        --backgroundcolor: rgb(53, 53, 53);
+        --fontcolor: rgb(185, 185, 185);
+        --bodybackgroundcolor: rgb(29, 29, 29);
+        --linsenPodcolor: rgb(150, 150, 150);
+        --backgroundcolorHover: rgb(66, 66, 66);
+      }
+      * {
+        font-family: "Fredoka", sans-serif;
+      }
+
+      body {
+        overflow-x: hidden;
+        padding: 2vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        justify-content: space-evenly;
+        color: var(--fontcolor);
+        background-color: var(--bodybackgroundcolor);
+        overflow: hidden;
+      }
+      h1 {
+        font-size: 3.5vw;
+      }
+
+      button {
+        background-color: var(--backgroundcolor);
+        border: none;
+        border-radius: calc(10px + 1.5vw);
+        color: var(--fontcolor);
+      }
+      ul {
+        font-size: calc(10px + 1.5vw);
+      }
+      p {
+        font-size: calc(10px + 1.3vw);
+      }
+      img {
+        width: 7vw;
+        aspect-ratio: 1/1;
+        padding-right: 1vw;
+      }
+
+      #banner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vh;
+        margin-bottom: 2vh;
+      }
+      #bannertext {
+        display: flex;
+        flex-direction: column;
+        width: 20vw;
+      }
+
+      #linsenpod {
+        font-size: calc(10px + 3.5vw);
+        font-weight: 400;
+        color: var(--linsenPodcolor);
+        margin: 0;
+      }
+
+      #Curiosity {
+        font-size: calc(10px + 6vw);
+        margin: 0;
+      }
+
+      #ausprobieren {
+        padding: 2vw 3vw;
+        background-color: var(--backgroundcolor);
+        border-radius: calc(10px + 1.5vw);
+        box-shadow: 0 0 4vw black;
+        color: var(--fontcolor);
+      }
+      a {
+        text-decoration: none;
+      }
+      #content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        flex-direction: column;
+        margin-top: 2vh;
+      }
+      #unsereIdee {
+        margin: 0;
+      }
+      #info {
+        width: 60vw;
+        border-radius: calc(10px + 1.5vw);
+        padding: 2vw 3vw;
+        padding-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        animation: load 1000ms ease-out;
+      }
+
+      @keyframes load {
+        0% {
+          opacity: 0;
+          scale: 0.8;
+        }
+        10% {
+          opacity: 0;
+          scale: 0.8;
+        }
+        100% {
+          opacity: 1;
+          scale: 1;
+        }
+      }
+
+      #idee {
+        margin: 0;
+        padding: 0;
+      }
+      #githublink {
+        transition: 200ms;
+        color: var(--fontcolor);
+        text-decoration: underline;
+        font-size: calc(13px + 0.7vw);
+      }
+      #githublink:hover {
+        transform: scale(1.1);
+      }
+      #copyright {
+        font-size: calc(10px + 0.5vw);
+        text-align: center;
+        margin-top: 2vh;
+        color: rgba(185, 185, 185, 0.5);
+      }
+    </style>
+  </head>
+  <body id="body">
+    <div id="banner">
+      <img src="https://squidpod.github.io/images/pics/final_dark.png" />
+      <div id="bannertext">
+        <h3 id="linsenpod">LinsenPod</h3>
+        <h1 id="Curiosity">C</h1>
+      </div>
+    </div>
+
+    <div id="content">
+      <div id="info">
+        <h1 id="unsereIdee">Unsere Idee:</h1>
+        <div id="idee">
+          <p>
+            Curiosity ist ein kleines Auto, das man mit einer Website steuern
+            kann. Die Website läuft auf einem kleinen Computer, der ESP 8266
+            heißt. Dieser verbindet sich über WLAN mit einem Handy, Tablet oder
+            Computer. Auf der Website sieht man ein Livebild von einer Kamera,
+            die auf dem Auto ist. So kann man das Auto überall fahren lassen, wo
+            es dasselbe WLAN wie das Gerät hat. Man selbst muss dafür nicht
+            aufstehen und kann bequem an einem Platz bleiben!
+          </p>
+        </div>
+      </div>
+      <p id="copyright">
+        von Rémy Göttlich und Linus Bös im Rahmen des Informatik Unterrichtes
+        bei Herrn Hagedorn 2024/2025
+      </p>
+    </div>
+
+    <script>
+      const curiosity = document.getElementById("Curiosity");
+      const name = "uriosity";
+      let namePart = "C";
+      let x = 0;
+      let adding = true;
+      let pause = false;
+
+      const interval = setInterval(() => {
+        if (!pause) {
+          if (adding) {
+            namePart += name[x];
+            x++;
+            if (x === name.length) {
+              adding = false;
+              setTimeout(() => {
+                pause = false;
+              }, 3000);
+              pause = true;
+            }
+          } else {
+            namePart = namePart.slice(0, -1);
+            x--;
+            if (x === 0) {
+              adding = true;
+              setTimeout(() => {
+                pause = false;
+              }, 150);
+              pause = true;
+            }
+          }
+          curiosity.innerText = namePart;
+        }
+      }, 150);
+    </script>
+  </body>
+</html>
